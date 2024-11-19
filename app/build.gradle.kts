@@ -26,6 +26,24 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            buildConfigField(
+                "String",
+                "BASE_URL",
+                "\"https://hp-api.onrender.com/api/\""
+            )
+            signingConfig = signingConfigs.getByName("debug")
+        }
+        debug {
+            isMinifyEnabled = false
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+            buildConfigField(
+                "String",
+                "BASE_URL",
+                "\"https://hp-api.onrender.com/api/\""
+            )
         }
     }
     compileOptions {
@@ -37,6 +55,7 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
 }
 
@@ -64,4 +83,8 @@ dependencies {
 
     // Gson
     implementation(libs.gson)
+}
+
+kapt {
+    correctErrorTypes = true
 }

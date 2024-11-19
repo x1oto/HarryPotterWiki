@@ -8,9 +8,9 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.x1oto.harrypotterwiki.databinding.FragmentDashboardBinding
-import com.x1oto.harrypotterwiki.presentation.viewmodel.houses.DashboardViewModel
+import com.x1oto.harrypotterwiki.presentation.viewmodel.houses.HousesViewModel
 
-class DashboardFragment : Fragment() {
+class HousesFragment : Fragment() {
 
     private var _binding: FragmentDashboardBinding? = null
 
@@ -23,14 +23,14 @@ class DashboardFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val dashboardViewModel =
-            ViewModelProvider(this).get(DashboardViewModel::class.java)
+        val housesViewModel =
+            ViewModelProvider(this).get(HousesViewModel::class.java)
 
         _binding = FragmentDashboardBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         val textView: TextView = binding.textDashboard
-        dashboardViewModel.text.observe(viewLifecycleOwner) {
+        housesViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
         return root

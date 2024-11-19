@@ -8,9 +8,9 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.x1oto.harrypotterwiki.databinding.FragmentHomeBinding
-import com.x1oto.harrypotterwiki.presentation.viewmodel.characters.HomeViewModel
+import com.x1oto.harrypotterwiki.presentation.viewmodel.characters.CharactersViewModel
 
-class HomeFragment : Fragment() {
+class CharactersFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
 
@@ -23,14 +23,14 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
+        val charactersViewModel =
+            ViewModelProvider(this).get(CharactersViewModel::class.java)
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner) {
+        charactersViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
         return root

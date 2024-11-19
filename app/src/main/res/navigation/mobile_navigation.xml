@@ -3,23 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/navigation_characters">
 
     <fragment
-        android:id="@+id/navigation_home"
-        android:name="com.x1oto.harrypotterwiki.presentation.view.characters.HomeFragment"
-        android:label="@string/title_home"
+        android:id="@+id/navigation_characters"
+        android:name="com.x1oto.harrypotterwiki.presentation.view.characters.CharactersFragment"
+        android:label="@string/characters"
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.x1oto.harrypotterwiki.presentation.view.houses.DashboardFragment"
-        android:label="@string/title_dashboard"
+        android:id="@+id/navigation_spells"
+        android:name="com.x1oto.harrypotterwiki.presentation.view.houses.HousesFragment"
+        android:label="@string/spells"
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.x1oto.harrypotterwiki.presentation.view.spells.NotificationsFragment"
-        android:label="@string/title_notifications"
+        android:id="@+id/navigation_houses"
+        android:name="com.x1oto.harrypotterwiki.presentation.view.spells.SpellsFragment"
+        android:label="@string/houses"
         tools:layout="@layout/fragment_notifications" />
 </navigation>

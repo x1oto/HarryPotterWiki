@@ -9,7 +9,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.x1oto.harrypotterwiki.databinding.FragmentHomeBinding
 import com.x1oto.harrypotterwiki.presentation.viewmodel.characters.CharactersViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class CharactersFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null

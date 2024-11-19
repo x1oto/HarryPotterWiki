@@ -1,4 +1,4 @@
-package com.x1oto.harrypotterwiki.ui.home
+package com.x1oto.harrypotterwiki.presentation.viewmodel.characters
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

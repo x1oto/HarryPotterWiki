@@ -1,4 +1,4 @@
-package com.x1oto.harrypotterwiki.ui.notifications
+package com.x1oto.harrypotterwiki.presentation.view.spells
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.x1oto.harrypotterwiki.databinding.FragmentNotificationsBinding
+import com.x1oto.harrypotterwiki.presentation.viewmodel.spells.NotificationsViewModel
 
 class NotificationsFragment : Fragment() {
 

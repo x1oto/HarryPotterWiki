@@ -1,15 +1,16 @@
-package com.x1oto.harrypotterwiki
+package com.x1oto.harrypotterwiki.presentation
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.x1oto.harrypotterwiki.R
 import com.x1oto.harrypotterwiki.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

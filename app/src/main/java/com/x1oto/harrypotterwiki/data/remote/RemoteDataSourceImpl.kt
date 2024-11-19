@@ -6,7 +6,7 @@ import javax.inject.Inject
 
 class RemoteDataSourceImpl @Inject constructor(): RemoteDataSource {
 
-    override suspend fun getCharacters(): Character {
+    override suspend fun getCharacter(): Character {
         TODO("Not yet implemented")
     }
 

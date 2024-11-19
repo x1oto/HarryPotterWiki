@@ -57,4 +57,11 @@ dependencies {
     // Dagger - Hilt
     implementation(libs.dagger.hilt.android)
     kapt(libs.dagger.hilt.compiler)
+
+    // Retrofit
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.converter)
+
+    // Gson
+    implementation(libs.gson)
 }

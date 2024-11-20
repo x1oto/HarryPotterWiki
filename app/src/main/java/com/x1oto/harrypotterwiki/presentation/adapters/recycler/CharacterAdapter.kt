@@ -3,17 +3,17 @@ package com.x1oto.harrypotterwiki.presentation.adapters.recycler
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.x1oto.harrypotterwiki.data.models.Character
-import com.x1oto.harrypotterwiki.data.models.CharacterItem
+import com.x1oto.harrypotterwiki.data.models.character.Characters
+import com.x1oto.harrypotterwiki.data.models.character.CharacterItem
 import com.x1oto.harrypotterwiki.databinding.ItemCharacterBinding
 
-class ItemCharacterAdapter(private val character: Character) : RecyclerView.Adapter<ItemCharacterAdapter.ItemCharacterViewHolder>() {
+class CharacterAdapter(private val characters: Characters) : RecyclerView.Adapter<CharacterAdapter.CharacterViewHolder>() {
 
-    class ItemCharacterViewHolder(val binding: ItemCharacterBinding): RecyclerView.ViewHolder(binding.root) {
+    class CharacterViewHolder(val binding: ItemCharacterBinding): RecyclerView.ViewHolder(binding.root) {
 
         fun bind(currentCharacter: CharacterItem) {
             with(binding) {
-                binding.characterItem = currentCharacter
+                characterItem = currentCharacter
                 characterName.text = currentCharacter.name
                 houseInfo.text = currentCharacter.house
                 genderInfo.text = currentCharacter.gender
@@ -23,10 +23,10 @@ class ItemCharacterAdapter(private val character: Character) : RecyclerView.Adap
 
 
         companion object {
-            fun from(parent: ViewGroup): ItemCharacterViewHolder {
+            fun from(parent: ViewGroup): CharacterViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
                 val binding = ItemCharacterBinding.inflate(layoutInflater, parent, false)
-                return ItemCharacterViewHolder(binding)
+                return CharacterViewHolder(binding)
             }
         }
     }
@@ -34,16 +34,16 @@ class ItemCharacterAdapter(private val character: Character) : RecyclerView.Adap
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): ItemCharacterAdapter.ItemCharacterViewHolder = ItemCharacterViewHolder.from(parent)
+    ): CharacterAdapter.CharacterViewHolder = CharacterViewHolder.from(parent)
 
 
     override fun onBindViewHolder(
-        holder: ItemCharacterAdapter.ItemCharacterViewHolder,
+        holder: CharacterAdapter.CharacterViewHolder,
         position: Int
     ) {
-        holder.bind(character[position])
+        holder.bind(characters[position])
     }
 
-    override fun getItemCount() = character.size
+    override fun getItemCount() = characters.size
 
 }

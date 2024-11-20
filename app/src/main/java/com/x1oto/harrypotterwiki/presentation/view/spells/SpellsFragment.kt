@@ -1,15 +1,18 @@
 package com.x1oto.harrypotterwiki.presentation.view.spells
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import com.x1oto.harrypotterwiki.databinding.FragmentSpellsBinding
 import com.x1oto.harrypotterwiki.presentation.viewmodel.spells.SpellsViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SpellsFragment : Fragment() {
 
     private var _binding: FragmentSpellsBinding? = null
@@ -23,11 +26,16 @@ class SpellsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val spellsViewModel =
-            ViewModelProvider(this).get(SpellsViewModel::class.java)
+        val viewModel by viewModels<SpellsViewModel>()
 
         _binding = FragmentSpellsBinding.inflate(inflater, container, false)
         val root: View = binding.root
+
+        viewModel.fetchSpells()
+        viewModel.status.observe(viewLifecycleOwner) { status ->
+            binding.status = status
+        }
+
         return root
     }
 

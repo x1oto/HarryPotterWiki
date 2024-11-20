@@ -1,4 +1,4 @@
-package com.x1oto.harrypotterwiki.data.models
+package com.x1oto.harrypotterwiki.data.models.character
 
 data class CharacterItem(
     val actor: String,

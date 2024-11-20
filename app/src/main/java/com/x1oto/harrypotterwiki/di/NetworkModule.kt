@@ -1,7 +1,7 @@
 package com.x1oto.harrypotterwiki.di
 
 import com.x1oto.harrypotterwiki.BuildConfig
-import com.x1oto.harrypotterwiki.data.remote.CharacterApi
+import com.x1oto.harrypotterwiki.data.remote.HarryPotterApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -45,7 +45,7 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun provideApiService(retrofit: Retrofit): CharacterApi {
-        return retrofit.create(CharacterApi::class.java)
+    fun provideApiService(retrofit: Retrofit): HarryPotterApi {
+        return retrofit.create(HarryPotterApi::class.java)
     }
 }

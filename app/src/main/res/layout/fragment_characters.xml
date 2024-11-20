@@ -6,7 +6,7 @@
     <data>
         <variable
             name="status"
-            type="com.x1oto.harrypotterwiki.presentation.utils.Status" />
+            type="com.x1oto.harrypotterwiki.presentation.utils.CharacterStatus" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -77,7 +77,7 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/themesRv"
-            setVisibilityAndAdapterRv="@{status}"
+            configureRvOnCharFragment="@{status}"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"

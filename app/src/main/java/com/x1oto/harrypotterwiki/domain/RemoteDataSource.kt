@@ -1,7 +1,9 @@
 package com.x1oto.harrypotterwiki.domain
 
-import com.x1oto.harrypotterwiki.data.models.Character
+import com.x1oto.harrypotterwiki.data.models.character.Characters
+import com.x1oto.harrypotterwiki.data.models.spell.Spells
 
 interface RemoteDataSource {
-    suspend fun getCharacter(): Character
+    suspend fun getCharacter(): Characters
+    suspend fun getSpells(): Spells
 }

@@ -7,7 +7,7 @@
 
         <variable
             name="characterItem"
-            type="com.x1oto.harrypotterwiki.data.models.CharacterItem" />
+            type="com.x1oto.harrypotterwiki.data.models.character.CharacterItem" />
     </data>
 
     <com.google.android.material.card.MaterialCardView

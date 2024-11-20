@@ -6,4 +6,8 @@
     <string name="characters">Characters</string>
     <string name="spells">Spells</string>
     <string name="houses">Houses</string>
+    <string name="something_went_wrong">Something went wrong... :(</string>
+    <string name="house">House</string>
+    <string name="gender">Gender</string>
+    <string name="birth">Birth</string>
 </resources>

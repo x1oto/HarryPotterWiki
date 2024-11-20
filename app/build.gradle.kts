@@ -56,6 +56,7 @@ android {
     buildFeatures {
         viewBinding = true
         buildConfig = true
+        dataBinding = true
     }
 }
 
@@ -83,6 +84,10 @@ dependencies {
 
     // Gson
     implementation(libs.gson)
+    
+    // Coil
+    implementation(libs.coil)
+
 }
 
 kapt {

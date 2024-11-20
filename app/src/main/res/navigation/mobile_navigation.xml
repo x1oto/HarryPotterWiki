@@ -9,17 +9,17 @@
         android:id="@+id/navigation_characters"
         android:name="com.x1oto.harrypotterwiki.presentation.view.characters.CharactersFragment"
         android:label="@string/characters"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_characters" />
 
     <fragment
         android:id="@+id/navigation_spells"
         android:name="com.x1oto.harrypotterwiki.presentation.view.houses.HousesFragment"
         android:label="@string/spells"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_spells" />
 
     <fragment
         android:id="@+id/navigation_houses"
         android:name="com.x1oto.harrypotterwiki.presentation.view.spells.SpellsFragment"
         android:label="@string/houses"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/fragment_houses" />
 </navigation>

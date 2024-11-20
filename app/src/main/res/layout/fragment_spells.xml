@@ -8,6 +8,10 @@
         <variable
             name="status"
             type="com.x1oto.harrypotterwiki.presentation.utils.SpellStatus" />
+
+        <variable
+            name="onItemClicked"
+            type="kotlin.jvm.functions.Function1&lt;com.x1oto.harrypotterwiki.data.models.spell.SpellItem, kotlin.Unit&gt;" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -79,6 +83,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/themesRv"
             configureRvOnSpellsFragment="@{status}"
+            onItemClicked="@{onItemClicked}"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"

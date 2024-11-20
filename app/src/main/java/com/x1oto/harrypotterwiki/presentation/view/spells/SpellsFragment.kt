@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import com.x1oto.harrypotterwiki.data.models.spell.SpellItem
 import com.x1oto.harrypotterwiki.databinding.FragmentSpellsBinding
 import com.x1oto.harrypotterwiki.presentation.viewmodel.spells.SpellsViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -30,6 +32,7 @@ class SpellsFragment : Fragment() {
 
         _binding = FragmentSpellsBinding.inflate(inflater, container, false)
         val root: View = binding.root
+        setupBindingActions()
 
         viewModel.fetchSpells()
         viewModel.status.observe(viewLifecycleOwner) { status ->
@@ -37,6 +40,19 @@ class SpellsFragment : Fragment() {
         }
 
         return root
+    }
+
+    private fun setupBindingActions() {
+        with(binding) {
+            onItemClicked = navigateToDetailedFragment()
+        }
+    }
+
+    fun navigateToDetailedFragment(): (SpellItem) -> Unit {
+        return { spell ->
+            val action = SpellsFragmentDirections.actionNavigationSpellsToDetailedSpellsFragment(spell)
+            findNavController().navigate(action)
+        }
     }
 
     override fun onDestroyView() {

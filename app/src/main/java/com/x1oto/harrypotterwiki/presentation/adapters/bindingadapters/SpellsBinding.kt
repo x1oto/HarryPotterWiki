@@ -6,6 +6,7 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.progressindicator.CircularProgressIndicator
+import com.x1oto.harrypotterwiki.data.models.spell.SpellItem
 import com.x1oto.harrypotterwiki.presentation.adapters.recycler.SpellAdapter
 import com.x1oto.harrypotterwiki.presentation.utils.CharacterStatus
 import com.x1oto.harrypotterwiki.presentation.utils.SpellStatus
@@ -13,14 +14,16 @@ import com.x1oto.harrypotterwiki.presentation.utils.SpellStatus
 class SpellsBinding {
     companion object {
         @BindingAdapter(
-            "configureRvOnSpellsFragment"
+            "configureRvOnSpellsFragment",
+            "onItemClicked",
+            requireAll = true
         )
         @JvmStatic
-        fun configureRvOnSpellsFragment(recyclerView: RecyclerView, spellsStatus: SpellStatus) {
+        fun configureRvOnSpellsFragment(recyclerView: RecyclerView, spellsStatus: SpellStatus, onItemClicked: (SpellItem) -> Unit) {
             when (spellsStatus) {
                 is SpellStatus.Success -> {
                     recyclerView.visibility = View.VISIBLE
-                    recyclerView.adapter = SpellAdapter(spellsStatus.spells)
+                    recyclerView.adapter = SpellAdapter(spellsStatus.spells, onItemClicked)
                 }
                 is SpellStatus.Error -> recyclerView.visibility = View.INVISIBLE
                 SpellStatus.Loading -> recyclerView.visibility = View.INVISIBLE

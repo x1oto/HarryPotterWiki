@@ -1,4 +1,4 @@
-package com.x1oto.harrypotterwiki.presentation
+package com.x1oto.harrypotterwiki.presentation.view
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
@@ -34,6 +34,11 @@ class MainActivity : AppCompatActivity() {
         }
 
         setupNavigation()
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        val navController = findNavController(R.id.nav_host_fragment_activity_main)
+        return navController.navigateUp() || super.onSupportNavigateUp()
     }
 
     private fun setupNavigation() {

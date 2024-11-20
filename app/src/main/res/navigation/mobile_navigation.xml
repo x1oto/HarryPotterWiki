@@ -16,11 +16,25 @@
         android:id="@+id/navigation_spells"
         android:name="com.x1oto.harrypotterwiki.presentation.view.spells.SpellsFragment"
         android:label="@string/spells"
-        tools:layout="@layout/fragment_spells" />
+        tools:layout="@layout/fragment_spells" >
+        <action
+            android:id="@+id/action_navigation_spells_to_detailedSpellsFragment"
+            app:destination="@id/detailedSpellsFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_houses"
         android:name="com.x1oto.harrypotterwiki.presentation.view.houses.HousesFragment"
         android:label="@string/houses"
         tools:layout="@layout/fragment_houses" />
+    <fragment
+        android:id="@+id/detailedSpellsFragment"
+        android:name="com.x1oto.harrypotterwiki.presentation.view.spells.DetailedSpellsFragment"
+        android:label="Explore spells"
+        tools:layout="@layout/fragment_detailed_spells" >
+
+        <argument
+            android:name="spellItem"
+            app:argType="com.x1oto.harrypotterwiki.data.models.spell.SpellItem" />
+    </fragment>
 </navigation>

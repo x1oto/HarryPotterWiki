@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="characterItem"
             type="com.x1oto.harrypotterwiki.data.models.CharacterItem" />
@@ -27,9 +28,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:scaleType="fitXY"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
                 tools:srcCompat="@tools:sample/avatars" />
 
             <com.google.android.material.textview.MaterialTextView
@@ -42,8 +43,8 @@
                 android:maxLines="1"
                 android:textAppearance="@style/TextAppearance.Material3.TitleSmall"
                 android:textSize="22sp"
-                app:layout_constraintTop_toBottomOf="@id/characterImage"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/characterImage" />
 
             <LinearLayout
                 android:id="@+id/detailsContainer"
@@ -52,10 +53,12 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
+                android:layout_marginBottom="8dp"
                 android:orientation="horizontal"
-                app:layout_constraintTop_toBottomOf="@id/characterName"
+                app:layout_constraintBottom_toTopOf="@+id/applyButton"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent">
+                app:layout_constraintTop_toBottomOf="@id/characterName">
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/publisherCard"
@@ -69,27 +72,28 @@
                         android:layout_height="match_parent">
 
                         <com.google.android.material.textview.MaterialTextView
-                            android:id="@+id/publisherLabel"
+                            android:id="@+id/houseLabel"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
                             android:text="@string/house"
-                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent" />
+                            app:layout_constraintTop_toTopOf="parent" />
 
                         <com.google.android.material.textview.MaterialTextView
-                            android:id="@+id/publisherInfo"
+                            android:id="@+id/houseInfo"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
                             android:layout_marginBottom="8dp"
                             android:ellipsize="end"
                             android:maxLines="1"
+                            android:text="-"
                             android:textStyle="bold"
-                            app:layout_constraintTop_toBottomOf="@id/publisherLabel"
+                            app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent" />
+                            app:layout_constraintTop_toBottomOf="@id/houseLabel" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </com.google.android.material.card.MaterialCardView>
 
@@ -105,27 +109,28 @@
                         android:layout_height="match_parent">
 
                         <com.google.android.material.textview.MaterialTextView
-                            android:id="@+id/categoryLabel"
+                            android:id="@+id/genderLabel"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
                             android:text="@string/gender"
-                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent" />
+                            app:layout_constraintTop_toTopOf="parent" />
 
                         <com.google.android.material.textview.MaterialTextView
-                            android:id="@+id/categoryInfo"
+                            android:id="@+id/genderInfo"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
                             android:layout_marginBottom="8dp"
                             android:ellipsize="end"
                             android:maxLines="1"
+                            android:text="-"
                             android:textStyle="bold"
-                            app:layout_constraintTop_toBottomOf="@id/categoryLabel"
+                            app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent" />
+                            app:layout_constraintTop_toBottomOf="@id/genderLabel" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </com.google.android.material.card.MaterialCardView>
 
@@ -145,9 +150,9 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
                             android:text="@string/birth"
-                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent" />
+                            app:layout_constraintTop_toTopOf="parent" />
 
                         <com.google.android.material.textview.MaterialTextView
                             android:id="@+id/birthInfo"
@@ -157,10 +162,11 @@
                             android:layout_marginBottom="8dp"
                             android:ellipsize="end"
                             android:maxLines="1"
+                            android:text="-"
                             android:textStyle="bold"
-                            app:layout_constraintTop_toBottomOf="@id/birthLabel"
+                            app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent" />
+                            app:layout_constraintTop_toBottomOf="@id/birthLabel" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </com.google.android.material.card.MaterialCardView>
             </LinearLayout>
@@ -170,7 +176,8 @@
                 style="@style/Widget.Material3.Button.TonalButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginBottom="16dp"
                 android:text="Apply"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />

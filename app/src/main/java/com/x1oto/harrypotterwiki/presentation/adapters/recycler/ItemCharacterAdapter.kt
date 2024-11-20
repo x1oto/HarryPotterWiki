@@ -15,6 +15,9 @@ class ItemCharacterAdapter(private val character: Character) : RecyclerView.Adap
             with(binding) {
                 binding.characterItem = currentCharacter
                 characterName.text = currentCharacter.name
+                houseInfo.text = currentCharacter.house
+                genderInfo.text = currentCharacter.gender
+                birthInfo.text = currentCharacter.dateOfBirth
             }
         }
 

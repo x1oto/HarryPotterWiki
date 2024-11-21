@@ -7,17 +7,25 @@ import com.x1oto.harrypotterwiki.data.models.character.Characters
 import com.x1oto.harrypotterwiki.data.models.character.CharacterItem
 import com.x1oto.harrypotterwiki.databinding.ItemCharacterBinding
 
-class CharacterAdapter(private val characters: Characters) : RecyclerView.Adapter<CharacterAdapter.CharacterViewHolder>() {
+class CharacterAdapter(private val characters: Characters, private val onItemClicked: (CharacterItem) -> Unit) :
+    RecyclerView.Adapter<CharacterAdapter.CharacterViewHolder>() {
 
-    class CharacterViewHolder(val binding: ItemCharacterBinding): RecyclerView.ViewHolder(binding.root) {
+    class CharacterViewHolder(val binding: ItemCharacterBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(currentCharacter: CharacterItem) {
+        fun bind(currentCharacter: CharacterItem, onItemClicked: (CharacterItem) -> Unit) {
             with(binding) {
                 characterItem = currentCharacter
                 characterName.text = currentCharacter.name
                 houseInfo.text = currentCharacter.house
                 genderInfo.text = currentCharacter.gender
                 birthInfo.text = currentCharacter.dateOfBirth
+
+
+
+                itemCl.setOnClickListener {
+                    onItemClicked(currentCharacter)
+                }
             }
         }
 
@@ -41,7 +49,7 @@ class CharacterAdapter(private val characters: Characters) : RecyclerView.Adapte
         holder: CharacterAdapter.CharacterViewHolder,
         position: Int
     ) {
-        holder.bind(characters[position])
+        holder.bind(characters[position], onItemClicked)
     }
 
     override fun getItemCount() = characters.size

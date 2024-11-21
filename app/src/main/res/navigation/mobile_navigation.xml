@@ -10,6 +10,9 @@
         android:name="com.x1oto.harrypotterwiki.presentation.view.characters.CharactersFragment"
         android:label="@string/characters"
         tools:layout="@layout/fragment_characters" >
+        <action
+            android:id="@+id/action_navigation_characters_to_detailedCharactersFragment"
+            app:destination="@id/detailedCharactersFragment" />
     </fragment>
 
     <fragment
@@ -39,5 +42,17 @@
         <action
             android:id="@+id/action_detailedSpellsFragment_to_navigation_spells"
             app:destination="@id/navigation_spells" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailedCharactersFragment"
+        android:name="com.x1oto.harrypotterwiki.presentation.view.characters.DetailedCharactersFragment"
+        android:label="Explore character"
+        tools:layout="@layout/fragment_detailed_characters" >
+        <action
+            android:id="@+id/action_detailedCharactersFragment_to_navigation_characters"
+            app:destination="@id/navigation_characters" />
+        <argument
+            android:name="characterItem"
+            app:argType="com.x1oto.harrypotterwiki.data.models.character.CharacterItem" />
     </fragment>
 </navigation>

@@ -23,7 +23,8 @@ data class CharacterItem(
     val species: String,
     val wand: Wand,
     val wizard: Boolean,
-    val yearOfBirth: Int
+    val yearOfBirth: Int,
+    val spellId: String? = null
 ) : Parcelable {
 
     constructor(parcel: Parcel) : this(

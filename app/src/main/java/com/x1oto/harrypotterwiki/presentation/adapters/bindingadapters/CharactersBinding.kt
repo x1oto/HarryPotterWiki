@@ -6,6 +6,8 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.progressindicator.CircularProgressIndicator
+import com.x1oto.harrypotterwiki.data.models.character.CharacterItem
+import com.x1oto.harrypotterwiki.data.models.spell.SpellItem
 import com.x1oto.harrypotterwiki.presentation.adapters.recycler.CharacterAdapter
 import com.x1oto.harrypotterwiki.presentation.adapters.recycler.SpellAdapter
 import com.x1oto.harrypotterwiki.presentation.utils.CharacterStatus
@@ -13,14 +15,16 @@ import com.x1oto.harrypotterwiki.presentation.utils.CharacterStatus
 class CharactersBinding {
     companion object {
         @BindingAdapter(
-            "configureRvOnCharFragment"
+            "configureRvOnCharFragment",
+            "onItemClicked",
+            requireAll = true
         )
         @JvmStatic
-        fun configureRvOnCharFragment(recyclerView: RecyclerView, characterStatus: CharacterStatus) {
+        fun configureRvOnCharFragment(recyclerView: RecyclerView, characterStatus: CharacterStatus, onItemClicked: (CharacterItem) -> Unit) {
             when (characterStatus) {
                 is CharacterStatus.Success -> {
                     recyclerView.visibility = View.VISIBLE
-                    recyclerView.adapter = CharacterAdapter(characterStatus.characters)
+                    recyclerView.adapter = CharacterAdapter(characterStatus.characters, onItemClicked)
                 }
                 is CharacterStatus.Error -> recyclerView.visibility = View.INVISIBLE
                 CharacterStatus.Loading -> recyclerView.visibility = View.INVISIBLE

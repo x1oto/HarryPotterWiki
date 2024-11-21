@@ -7,9 +7,14 @@
         <variable
             name="status"
             type="com.x1oto.harrypotterwiki.presentation.utils.CharacterStatus" />
+
+        <variable
+            name="onItemClicked"
+            type="kotlin.jvm.functions.Function1&lt;com.x1oto.harrypotterwiki.data.models.character.CharacterItem, kotlin.Unit&gt;" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/itemCl"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".presentation.view.characters.CharactersFragment">
@@ -78,6 +83,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/themesRv"
             configureRvOnCharFragment="@{status}"
+            onItemClicked="@{onItemClicked}"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"

@@ -6,7 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import com.x1oto.harrypotterwiki.data.models.character.CharacterItem
+import com.x1oto.harrypotterwiki.data.models.spell.SpellItem
 import com.x1oto.harrypotterwiki.databinding.FragmentCharactersBinding
+import com.x1oto.harrypotterwiki.presentation.view.spells.SpellsFragmentDirections
 import com.x1oto.harrypotterwiki.presentation.viewmodel.characters.CharactersViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -30,11 +34,27 @@ class CharactersFragment : Fragment() {
         _binding = FragmentCharactersBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
+        setupBindingActions()
+
         charactersViewModel.fetchCharacters()
         charactersViewModel.status.observe(viewLifecycleOwner) { status ->
             binding.status = status
         }
+
         return root
+    }
+
+    private fun setupBindingActions() {
+        with(binding) {
+            onItemClicked = navigateToDetailedFragment()
+        }
+    }
+
+    fun navigateToDetailedFragment(): (CharacterItem) -> Unit {
+        return { character ->
+            val action = CharactersFragmentDirections.actionNavigationCharactersToDetailedCharactersFragment(character)
+            findNavController().navigate(action)
+        }
     }
 
     override fun onDestroyView() {

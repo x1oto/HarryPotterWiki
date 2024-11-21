@@ -17,4 +17,8 @@ class RemoteDataSourceImpl @Inject constructor(
         return harryPotterApi.getSpells()
     }
 
+    override suspend fun getCharactersByHouse(house: String): Characters {
+        return harryPotterApi.getCharactersByHouse(house)
+    }
+
 }

@@ -4,12 +4,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import com.x1oto.harrypotterwiki.databinding.FragmentHousesBinding
+import com.x1oto.harrypotterwiki.presentation.adapters.recycler.HouseAdapter
 import com.x1oto.harrypotterwiki.presentation.viewmodel.houses.HousesViewModel
+import dagger.hilt.android.AndroidEntryPoint
+import okhttp3.internal.notify
 
+@AndroidEntryPoint
 class HousesFragment : Fragment() {
 
     private var _binding: FragmentHousesBinding? = null
@@ -23,11 +26,35 @@ class HousesFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val housesViewModel =
-            ViewModelProvider(this).get(HousesViewModel::class.java)
+        val viewModel by viewModels<HousesViewModel>()
 
         _binding = FragmentHousesBinding.inflate(inflater, container, false)
         val root: View = binding.root
+
+        binding.button.setOnClickListener {
+            viewModel.getCharactersByHouse("Gryffindor")
+        }
+
+        binding.button2.setOnClickListener {
+            viewModel.getCharactersByHouse("Hufflepuff")
+        }
+
+        binding.button3.setOnClickListener {
+            viewModel.getCharactersByHouse("Ravenclaw")
+        }
+
+        binding.button4.setOnClickListener {
+            viewModel.getCharactersByHouse("Slytherin")
+        }
+
+        viewModel.status.observe(viewLifecycleOwner) { charByHouse ->
+            if(charByHouse != null) {
+                binding.housesRv.adapter = HouseAdapter(charByHouse)
+            }
+        }
+
+
+
         return root
     }
 

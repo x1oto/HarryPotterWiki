@@ -36,5 +36,8 @@
         <argument
             android:name="spellItem"
             app:argType="com.x1oto.harrypotterwiki.data.models.spell.SpellItem" />
+        <action
+            android:id="@+id/action_detailedSpellsFragment_to_navigation_spells"
+            app:destination="@id/navigation_spells" />
     </fragment>
 </navigation>

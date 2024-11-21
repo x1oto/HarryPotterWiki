@@ -34,8 +34,6 @@ class CharactersFragment : Fragment() {
         charactersViewModel.status.observe(viewLifecycleOwner) { status ->
             binding.status = status
         }
-
-
         return root
     }
 

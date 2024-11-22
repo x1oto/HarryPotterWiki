@@ -7,13 +7,21 @@ import com.x1oto.harrypotterwiki.data.models.character.Characters
 import com.x1oto.harrypotterwiki.data.models.character.CharacterItem
 import com.x1oto.harrypotterwiki.databinding.ItemCharacterBinding
 
-class CharacterAdapter(private val characters: Characters, private val onItemClicked: (CharacterItem) -> Unit) :
+class CharacterAdapter(
+    private val characters: Characters,
+    private val onItemClicked: (CharacterItem) -> Unit,
+    private val onTeachClicked: (String) -> Unit
+) :
     RecyclerView.Adapter<CharacterAdapter.CharacterViewHolder>() {
 
     class CharacterViewHolder(val binding: ItemCharacterBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(currentCharacter: CharacterItem, onItemClicked: (CharacterItem) -> Unit) {
+        fun bind(
+            currentCharacter: CharacterItem,
+            onItemClicked: (CharacterItem) -> Unit,
+            onTeachClicked: (String) -> Unit
+        ) {
             with(binding) {
                 characterItem = currentCharacter
                 characterName.text = currentCharacter.name
@@ -25,6 +33,10 @@ class CharacterAdapter(private val characters: Characters, private val onItemCli
 
                 itemCl.setOnClickListener {
                     onItemClicked(currentCharacter)
+                }
+
+                teachSpellBt.setOnClickListener {
+                    onTeachClicked(currentCharacter.id)
                 }
             }
         }
@@ -49,7 +61,7 @@ class CharacterAdapter(private val characters: Characters, private val onItemCli
         holder: CharacterAdapter.CharacterViewHolder,
         position: Int
     ) {
-        holder.bind(characters[position], onItemClicked)
+        holder.bind(characters[position], onItemClicked, onTeachClicked)
     }
 
     override fun getItemCount() = characters.size

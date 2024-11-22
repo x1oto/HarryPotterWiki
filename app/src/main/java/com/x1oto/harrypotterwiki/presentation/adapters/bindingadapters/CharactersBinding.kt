@@ -17,15 +17,23 @@ class CharactersBinding {
         @BindingAdapter(
             "configureRvOnCharFragment",
             "onItemClicked",
+            "onTeachClicked",
             requireAll = true
         )
         @JvmStatic
-        fun configureRvOnCharFragment(recyclerView: RecyclerView, characterStatus: CharacterStatus, onItemClicked: (CharacterItem) -> Unit) {
+        fun configureRvOnCharFragment(
+            recyclerView: RecyclerView,
+            characterStatus: CharacterStatus,
+            onItemClicked: (CharacterItem) -> Unit,
+            onTeachClicked: (String) -> Unit
+        ) {
             when (characterStatus) {
                 is CharacterStatus.Success -> {
                     recyclerView.visibility = View.VISIBLE
-                    recyclerView.adapter = CharacterAdapter(characterStatus.characters, onItemClicked)
+                    recyclerView.adapter =
+                        CharacterAdapter(characterStatus.characters, onItemClicked, onTeachClicked)
                 }
+
                 is CharacterStatus.Error -> recyclerView.visibility = View.INVISIBLE
                 CharacterStatus.Loading -> recyclerView.visibility = View.INVISIBLE
             }
@@ -43,7 +51,10 @@ class CharactersBinding {
 
         @BindingAdapter("setVisibilityCpi")
         @JvmStatic
-        fun setVisibilityCpi(circularProgressIndicator: CircularProgressIndicator, characterStatus: CharacterStatus) {
+        fun setVisibilityCpi(
+            circularProgressIndicator: CircularProgressIndicator,
+            characterStatus: CharacterStatus
+        ) {
             when (characterStatus) {
                 is CharacterStatus.Success -> circularProgressIndicator.visibility = View.INVISIBLE
                 is CharacterStatus.Error -> circularProgressIndicator.visibility = View.INVISIBLE
@@ -58,6 +69,7 @@ class CharactersBinding {
                 is CharacterStatus.Error -> {
                     textView.text = characterStatus.error
                 }
+
                 else -> {}
             }
         }

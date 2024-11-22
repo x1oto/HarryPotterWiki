@@ -11,6 +11,11 @@
         <variable
             name="onItemClicked"
             type="kotlin.jvm.functions.Function1&lt;com.x1oto.harrypotterwiki.data.models.character.CharacterItem, kotlin.Unit&gt;" />
+
+        <variable
+            name="onTeachClicked"
+            type="kotlin.jvm.functions.Function1&lt;String, kotlin.Unit&gt;" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -84,6 +89,7 @@
             android:id="@+id/themesRv"
             configureRvOnCharFragment="@{status}"
             onItemClicked="@{onItemClicked}"
+            onTeachClicked="@{onTeachClicked}"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"

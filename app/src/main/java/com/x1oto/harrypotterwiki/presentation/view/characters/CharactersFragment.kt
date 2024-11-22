@@ -1,10 +1,12 @@
 package com.x1oto.harrypotterwiki.presentation.view.characters
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.x1oto.harrypotterwiki.data.models.character.CharacterItem
@@ -18,26 +20,23 @@ import dagger.hilt.android.AndroidEntryPoint
 class CharactersFragment : Fragment() {
 
     private var _binding: FragmentCharactersBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
+
+    val viewModel by viewModels<CharactersViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val charactersViewModel =
-            ViewModelProvider(this).get(CharactersViewModel::class.java)
 
         _binding = FragmentCharactersBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         setupBindingActions()
 
-        charactersViewModel.fetchCharacters()
-        charactersViewModel.status.observe(viewLifecycleOwner) { status ->
+        viewModel.fetchCharacters()
+        viewModel.status.observe(viewLifecycleOwner) { status ->
             binding.status = status
         }
 
@@ -47,6 +46,7 @@ class CharactersFragment : Fragment() {
     private fun setupBindingActions() {
         with(binding) {
             onItemClicked = navigateToDetailedFragment()
+            onTeachClicked = teachSpell()
         }
     }
 
@@ -54,6 +54,12 @@ class CharactersFragment : Fragment() {
         return { character ->
             val action = CharactersFragmentDirections.actionNavigationCharactersToDetailedCharactersFragment(character)
             findNavController().navigate(action)
+        }
+    }
+
+    fun teachSpell(): (String) -> Unit {
+        return { id ->
+            viewModel.teachSpell(id)
         }
     }
 

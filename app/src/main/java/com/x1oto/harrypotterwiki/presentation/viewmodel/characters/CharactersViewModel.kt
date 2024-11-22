@@ -25,6 +25,7 @@ class CharactersViewModel @Inject constructor(private val repository: Repository
     private var _status = MutableLiveData<CharacterStatus>()
     val status: LiveData<CharacterStatus> = _status
 
+
     fun fetchCharacters() = viewModelScope.launch {
         _status.value = CharacterStatus.Loading
         val localCharacters = fetchLocalCharacters()
@@ -40,6 +41,23 @@ class CharactersViewModel @Inject constructor(private val repository: Repository
                 _status.value =
                     CharacterStatus.Error("We cannot fetch characters at the moment. Try again later or update application.")
             }
+        }
+    }
+
+    fun teachSpell(id: String) = viewModelScope.launch {
+        _status.value = CharacterStatus.Loading
+        val localCharacters = fetchLocalCharacters()
+
+        if (localCharacters != null) {
+            val updatedCharacters = localCharacters.map { character ->
+                if (character.id == id) {
+                    character.spellId = listOf("Hello", "It's test")
+                }
+                character
+            }
+            val toCharacters = Characters().apply { addAll(updatedCharacters) }
+            cacheCharacters(toCharacters)
+            _status.value = CharacterStatus.Success(toCharacters)
         }
     }
 

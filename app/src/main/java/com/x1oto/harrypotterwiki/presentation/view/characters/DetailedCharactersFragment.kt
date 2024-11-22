@@ -30,7 +30,7 @@ class DetailedCharactersFragment : Fragment() {
 
         binding.actorInfoTv.text = args.characterItem.actor
         binding.patronusInfoTv.text = args.characterItem.patronus
-        binding.spellsInfoTv.text = args.characterItem.spellId
+        binding.spellsInfoTv.text = args.characterItem.spellId.toString()
     }
 
     override fun onDestroyView() {

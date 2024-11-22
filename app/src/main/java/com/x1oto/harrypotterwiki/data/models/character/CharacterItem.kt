@@ -24,7 +24,7 @@ data class CharacterItem(
     val wand: Wand,
     val wizard: Boolean,
     val yearOfBirth: Int,
-    val spellId: String? = null
+    var spellId: List<String>? = null
 ) : Parcelable {
 
     constructor(parcel: Parcel) : this(

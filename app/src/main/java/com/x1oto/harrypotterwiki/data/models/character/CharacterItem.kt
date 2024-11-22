@@ -3,7 +3,7 @@ package com.x1oto.harrypotterwiki.data.models.character
 import android.os.Parcel
 import android.os.Parcelable
 
-data class CharacterItem(
+class CharacterItem(
     val actor: String,
     val alive: Boolean,
     val alternate_actors: List<String>,

@@ -6,9 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.navArgs
-import com.x1oto.harrypotterwiki.R
 import com.x1oto.harrypotterwiki.databinding.FragmentDetailedCharactersBinding
-import com.x1oto.harrypotterwiki.presentation.view.spells.DetailedSpellsFragmentArgs
 
 class DetailedCharactersFragment : Fragment() {
 
@@ -30,7 +28,7 @@ class DetailedCharactersFragment : Fragment() {
 
         binding.actorInfoTv.text = args.characterItem.actor
         binding.patronusInfoTv.text = args.characterItem.patronus
-        binding.spellsInfoTv.text = args.characterItem.spellId.toString()
+        binding.spellsInfoTv.text = args.characterItem.spellName.toString()
     }
 
     override fun onDestroyView() {

@@ -5,11 +5,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
-import com.x1oto.harrypotterwiki.data.local.room.CacheCharactersDao
 import com.x1oto.harrypotterwiki.data.local.room.CacheCharactersEntity
 import com.x1oto.harrypotterwiki.data.models.character.Characters
+import com.x1oto.harrypotterwiki.data.models.spell.Spells
 import com.x1oto.harrypotterwiki.domain.Repository
 import com.x1oto.harrypotterwiki.presentation.utils.CharacterStatus
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -18,6 +16,7 @@ import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
+import kotlin.random.Random
 
 @HiltViewModel
 class CharactersViewModel @Inject constructor(private val repository: Repository) : ViewModel() {
@@ -51,7 +50,10 @@ class CharactersViewModel @Inject constructor(private val repository: Repository
         if (localCharacters != null) {
             val updatedCharacters = localCharacters.map { character ->
                 if (character.id == id) {
-                    character.spellId = listOf("Hello", "It's test")
+                    val spells = fetchSpells()
+
+                    character.spellName =
+                        spells?.get(generateRandomNumber(spells))?.name
                 }
                 character
             }
@@ -89,14 +91,27 @@ class CharactersViewModel @Inject constructor(private val repository: Repository
 
     private fun cacheCharacters(characters: Characters) {
         viewModelScope.launch(Dispatchers.IO) {
-            Log.d("HHH", "Start caching characters")
             try {
                 repository.localDataSource.cacheCharacters(CacheCharactersEntity(0, characters))
-                Log.d("HHH", "Caching completed successfully")
             } catch (e: Exception) {
                 Log.e("HHH", "Error caching characters", e)
             }
         }
     }
+
+    private suspend fun fetchSpells(): Spells? {
+        return withContext(Dispatchers.Main) {
+            try {
+                repository.remoteDataSource.getSpells()
+            } catch (e: Exception) {
+                _status.value =
+                    CharacterStatus.Error("Sorry, we currently cannot fetch characters. Try to check your connection.")
+                Log.e("exploreViewModel", e.toString())
+                null
+            }
+        }
+    }
+
+    private fun generateRandomNumber(spells: Spells) = Random.nextInt(from = 0, until = spells.size)
 
 }

@@ -181,6 +181,17 @@
                 android:text="Teach a spell"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
+
+            <Button
+                android:id="@+id/swapHouseBt"
+                style="@style/Widget.Material3.Button.TonalButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="Swap house"
+                app:layout_constraintBottom_toBottomOf="@+id/teachSpellBt"
+                app:layout_constraintStart_toEndOf="@+id/teachSpellBt"
+                app:layout_constraintTop_toTopOf="@+id/teachSpellBt" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
 </layout>

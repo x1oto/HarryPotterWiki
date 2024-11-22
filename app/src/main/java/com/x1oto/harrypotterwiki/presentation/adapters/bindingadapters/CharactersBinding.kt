@@ -18,6 +18,7 @@ class CharactersBinding {
             "configureRvOnCharFragment",
             "onItemClicked",
             "onTeachClicked",
+            "onSwapHouse",
             requireAll = true
         )
         @JvmStatic
@@ -25,13 +26,19 @@ class CharactersBinding {
             recyclerView: RecyclerView,
             characterStatus: CharacterStatus,
             onItemClicked: (CharacterItem) -> Unit,
-            onTeachClicked: (String) -> Unit
+            onTeachClicked: (String) -> Unit,
+            onSwapHouse: (String) -> Unit
         ) {
             when (characterStatus) {
                 is CharacterStatus.Success -> {
                     recyclerView.visibility = View.VISIBLE
                     recyclerView.adapter =
-                        CharacterAdapter(characterStatus.characters, onItemClicked, onTeachClicked)
+                        CharacterAdapter(
+                            characterStatus.characters,
+                            onItemClicked,
+                            onTeachClicked,
+                            onSwapHouse
+                        )
                 }
 
                 is CharacterStatus.Error -> recyclerView.visibility = View.INVISIBLE

@@ -50,10 +50,29 @@ class CharactersViewModel @Inject constructor(private val repository: Repository
         if (localCharacters != null) {
             val updatedCharacters = localCharacters.map { character ->
                 if (character.id == id) {
-                    val spells = fetchSpells()
+                    if (character.spellName == null) {
+                        val spells = fetchSpells()
 
-                    character.spellName =
-                        spells?.get(generateRandomNumber(spells))?.name
+                        character.spellName =
+                            spells?.get(generateRandomNumber(spells))?.name
+                    }
+                }
+                character
+            }
+            val toCharacters = Characters().apply { addAll(updatedCharacters) }
+            cacheCharacters(toCharacters)
+            _status.value = CharacterStatus.Success(toCharacters)
+        }
+    }
+
+    fun swapHouse(id: String) = viewModelScope.launch {
+        _status.value = CharacterStatus.Loading
+        val localCharacters = fetchLocalCharacters()
+
+        if (localCharacters != null) {
+            val updatedCharacters = localCharacters.map { character ->
+                if (character.id == id) {
+                    character.house = getRandomHouse()
                 }
                 character
             }
@@ -113,5 +132,7 @@ class CharactersViewModel @Inject constructor(private val repository: Repository
     }
 
     private fun generateRandomNumber(spells: Spells) = Random.nextInt(from = 0, until = spells.size)
+
+    private fun getRandomHouse() = listOf("Gryffindor", "Hufflepuff", "Ravenclaw", "Slytherin").random()
 
 }

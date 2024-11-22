@@ -16,6 +16,10 @@
             name="onTeachClicked"
             type="kotlin.jvm.functions.Function1&lt;String, kotlin.Unit&gt;" />
 
+        <variable
+            name="onSwapHouse"
+            type="kotlin.jvm.functions.Function1&lt;String, kotlin.Unit&gt;" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -90,6 +94,7 @@
             configureRvOnCharFragment="@{status}"
             onItemClicked="@{onItemClicked}"
             onTeachClicked="@{onTeachClicked}"
+            onSwapHouse="@{onSwapHouse}"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"

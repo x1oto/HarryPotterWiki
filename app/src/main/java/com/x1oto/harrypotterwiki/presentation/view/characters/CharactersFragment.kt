@@ -47,6 +47,7 @@ class CharactersFragment : Fragment() {
         with(binding) {
             onItemClicked = navigateToDetailedFragment()
             onTeachClicked = teachSpell()
+            onSwapHouse = swapHouse()
         }
     }
 
@@ -60,6 +61,12 @@ class CharactersFragment : Fragment() {
     fun teachSpell(): (String) -> Unit {
         return { id ->
             viewModel.teachSpell(id)
+        }
+    }
+
+    fun swapHouse(): (String) -> Unit {
+        return { id ->
+            viewModel.swapHouse(id)
         }
     }
 

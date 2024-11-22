@@ -10,7 +10,8 @@ import com.x1oto.harrypotterwiki.databinding.ItemCharacterBinding
 class CharacterAdapter(
     private val characters: Characters,
     private val onItemClicked: (CharacterItem) -> Unit,
-    private val onTeachClicked: (String) -> Unit
+    private val onTeachClicked: (String) -> Unit,
+    private val onSwapHouse: (String) -> Unit
 ) :
     RecyclerView.Adapter<CharacterAdapter.CharacterViewHolder>() {
 
@@ -20,7 +21,8 @@ class CharacterAdapter(
         fun bind(
             currentCharacter: CharacterItem,
             onItemClicked: (CharacterItem) -> Unit,
-            onTeachClicked: (String) -> Unit
+            onTeachClicked: (String) -> Unit,
+            onSwapHouse: (String) -> Unit
         ) {
             with(binding) {
                 characterItem = currentCharacter
@@ -37,6 +39,10 @@ class CharacterAdapter(
 
                 teachSpellBt.setOnClickListener {
                     onTeachClicked(currentCharacter.id)
+                }
+
+                swapHouseBt.setOnClickListener {
+                    onSwapHouse(currentCharacter.id)
                 }
             }
         }
@@ -61,7 +67,7 @@ class CharacterAdapter(
         holder: CharacterAdapter.CharacterViewHolder,
         position: Int
     ) {
-        holder.bind(characters[position], onItemClicked, onTeachClicked)
+        holder.bind(characters[position], onItemClicked, onTeachClicked, onSwapHouse)
     }
 
     override fun getItemCount() = characters.size

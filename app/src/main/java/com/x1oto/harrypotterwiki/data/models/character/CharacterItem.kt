@@ -15,7 +15,7 @@ data class CharacterItem(
     val hairColour: String,
     val hogwartsStaff: Boolean,
     val hogwartsStudent: Boolean,
-    val house: String,
+    var house: String,
     val id: String,
     val image: String,
     val name: String,
